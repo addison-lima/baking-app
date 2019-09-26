@@ -22,6 +22,7 @@ public class RecipesRepository {
     private static RecipesRepository sRecipesRepository;
 
     private final MutableLiveData<RequestState> mRequestState = new MutableLiveData<>();
+    private final MutableLiveData<List<Recipe>> mRecipesData = new MutableLiveData<>();
 
     private RecipesRepository() {
         retrieveRecipes();
@@ -38,6 +39,10 @@ public class RecipesRepository {
 
     public LiveData<RequestState> getRequestState() {
         return mRequestState;
+    }
+
+    public LiveData<List<Recipe>> getRecipesData() {
+        return mRecipesData;
     }
 
     public void refreshData() {
@@ -62,6 +67,7 @@ public class RecipesRepository {
             public void onResponse(@NonNull Call<List<Recipe>> call,
                     @NonNull Response<List<Recipe>> response) {
                 mRequestState.setValue(RequestState.SUCCESS);
+                mRecipesData.setValue(response.body());
             }
 
             @Override

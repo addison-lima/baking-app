@@ -6,7 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.addison.bakingapp.models.Recipe;
 import com.addison.bakingapp.repository.RecipesRepository;
+
+import java.util.List;
 
 public class RecipesViewModel extends AndroidViewModel {
 
@@ -20,6 +23,10 @@ public class RecipesViewModel extends AndroidViewModel {
 
     public LiveData<RecipesRepository.RequestState> getRequestState() {
         return mRecipesRepository.getRequestState();
+    }
+
+    public LiveData<List<Recipe>> getRecipes() {
+        return mRecipesRepository.getRecipesData();
     }
 
     public void refresh() {

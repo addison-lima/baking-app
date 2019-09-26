@@ -9,4 +9,12 @@ public class Recipe {
     private List<Step> steps;
     private int servings;
     private String image;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getImagePath() {
+        return image;
+    }
 }

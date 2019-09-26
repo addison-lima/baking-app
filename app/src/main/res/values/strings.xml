@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BakingApp</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="recipe_image">Recipe image</string>
 </resources>
