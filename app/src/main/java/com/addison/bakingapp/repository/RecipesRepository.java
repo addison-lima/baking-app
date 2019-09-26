@@ -1,8 +1,8 @@
 package com.addison.bakingapp.repository;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.addison.bakingapp.models.Recipe;
 
@@ -21,6 +21,8 @@ public class RecipesRepository {
     private static final Object LOCK = new Object();
     private static RecipesRepository sRecipesRepository;
 
+    private final MutableLiveData<RequestState> mRequestState = new MutableLiveData<>();
+
     private RecipesRepository() {
         retrieveRecipes();
     }
@@ -34,24 +36,44 @@ public class RecipesRepository {
         return sRecipesRepository;
     }
 
+    public LiveData<RequestState> getRequestState() {
+        return mRequestState;
+    }
+
+    public void refreshData() {
+        if ((mRequestState.getValue() != null)
+                && !mRequestState.getValue().equals(RequestState.LOADING)) {
+            retrieveRecipes();
+        }
+    }
+
     private void retrieveRecipes() {
+        mRequestState.setValue(RequestState.LOADING);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RECIPES_END_POINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RecipesApi mService = retrofit.create(RecipesApi.class);
+
         Call<List<Recipe>> call = mService.getRecipes();
         call.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(@NonNull Call<List<Recipe>> call,
                     @NonNull Response<List<Recipe>> response) {
-                Log.d("ADD_TEST", "onResponse");
+                mRequestState.setValue(RequestState.SUCCESS);
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Recipe>> call, @NonNull Throwable t) {
-                Log.d("ADD_TEST", "onFailure");
+                mRequestState.setValue(RequestState.FAILURE);
             }
         });
+    }
+
+    public enum RequestState {
+        LOADING,
+        SUCCESS,
+        FAILURE
     }
 }
