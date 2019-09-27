@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
 
         int orientation = getResources().getConfiguration().orientation;
-        int spanCount = (orientation == Configuration.ORIENTATION_LANDSCAPE) ? 5 : 3;
+        int spanCount = (orientation == Configuration.ORIENTATION_LANDSCAPE) ? 2 : 1;
 
         mRecipesAdapter = new RecipesAdapter(this, this);
 
@@ -75,8 +76,16 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onChanged(RecipesRepository.RequestState requestState) {
                 if (requestState != null) {
-                    TextView textView = findViewById(R.id.tv_test);
+                    RecyclerView rvRecipes = findViewById(R.id.rv_recipes);
+                    TextView textView = findViewById(R.id.tv_request_state);
                     textView.setText(requestState.toString());
+                    if (requestState.equals(RecipesRepository.RequestState.SUCCESS)) {
+                        textView.setVisibility(View.INVISIBLE);
+                        rvRecipes.setVisibility(View.VISIBLE);
+                    } else {
+                        rvRecipes.setVisibility(View.INVISIBLE);
+                        textView.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         };
