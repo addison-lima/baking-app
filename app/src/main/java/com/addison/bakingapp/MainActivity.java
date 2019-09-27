@@ -1,5 +1,6 @@
 package com.addison.bakingapp;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
@@ -69,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(Recipe recipe) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("recipe", recipe);
+        startActivityForResult(intent, 1);
     }
 
     private Observer<RecipesRepository.RequestState> getRequestStateObserver() {
