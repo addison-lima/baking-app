@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
-
+<!--
     <fragment
         android:id="@+id/frg_recipe"
         android:name="com.addison.bakingapp.fragments.RecipeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
+-->
 </LinearLayout>
