@@ -41,6 +41,10 @@ public class Recipe implements Parcelable {
         return image;
     }
 
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
     @Override
     public int describeContents() {
         return 0;
