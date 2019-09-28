@@ -30,4 +30,8 @@ public class DetailActivity extends AppCompatActivity {
 
         mIsTablet = (findViewById(R.id.fragment_more_detail) != null);
     }
+
+    public Recipe getRecipe() {
+        return mRecipe;
+    }
 }
