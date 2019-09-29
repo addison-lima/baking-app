@@ -27,7 +27,7 @@ public class RecipeActivity extends AppCompatActivity {
         }
 
         setTitle(mRecipe.getName());
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_recipe);
 
         mIsTablet = (findViewById(R.id.fragment_more_detail) != null);
     }
