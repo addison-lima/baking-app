@@ -12,6 +12,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ingredients"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
@@ -26,6 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Steps"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"/>
