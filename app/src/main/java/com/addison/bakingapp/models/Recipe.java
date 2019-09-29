@@ -45,6 +45,10 @@ public class Recipe implements Parcelable {
         return ingredients;
     }
 
+    public List<Step> getSteps() {
+        return steps;
+    }
+
     @Override
     public int describeContents() {
         return 0;
