@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".DetailActivity">
+        <activity android:name=".RecipeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.addison.bakingapp.DetailActivity" />
+                android:value="com.addison.bakingapp.RecipeActivity" />
         </activity>
     </application>
 

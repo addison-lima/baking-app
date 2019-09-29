@@ -11,7 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.addison.bakingapp.DetailActivity;
+import com.addison.bakingapp.RecipeActivity;
 import com.addison.bakingapp.R;
 import com.addison.bakingapp.adapters.IngredientsAdapter;
 import com.addison.bakingapp.adapters.StepsAdapter;
@@ -33,10 +33,10 @@ public class RecipeFragment extends Fragment implements StepsAdapter.StepsAdapte
         mBinding.rvSteps.setLayoutManager(new LinearLayoutManager(getContext()));
         mBinding.rvSteps.setHasFixedSize(true);
 
-        DetailActivity detailActivity = (DetailActivity) getActivity();
-        if (detailActivity != null) {
-            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(detailActivity.getRecipe().getIngredients());
-            StepsAdapter stepsAdapter = new StepsAdapter(detailActivity.getRecipe().getSteps(), this);
+        RecipeActivity recipeActivity = (RecipeActivity) getActivity();
+        if (recipeActivity != null) {
+            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(recipeActivity.getRecipe().getIngredients());
+            StepsAdapter stepsAdapter = new StepsAdapter(recipeActivity.getRecipe().getSteps(), this);
 
             mBinding.rvIngredients.setAdapter(ingredientsAdapter);
             mBinding.rvSteps.setAdapter(stepsAdapter);
@@ -47,5 +47,9 @@ public class RecipeFragment extends Fragment implements StepsAdapter.StepsAdapte
 
     @Override
     public void onClick(Step step) {
+        RecipeActivity recipeActivity = (RecipeActivity) getActivity();
+        if (recipeActivity != null) {
+            recipeActivity.onStepSelected(step);
+        }
     }
 }
