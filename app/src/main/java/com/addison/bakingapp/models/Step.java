@@ -43,6 +43,10 @@ public class Step implements Parcelable {
         dest.writeString(thumbnailURL);
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getShortDescription() {
         return shortDescription;
     }
