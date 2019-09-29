@@ -20,29 +20,27 @@ import com.addison.bakingapp.models.Step;
 
 public class RecipeFragment extends Fragment implements StepsAdapter.StepsAdapterOnClickHandler {
 
-    private FragmentRecipeBinding mBinding;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_recipe, container, false);
+        FragmentRecipeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recipe, container, false);
 
-        mBinding.rvIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.rvIngredients.setHasFixedSize(true);
+        binding.rvIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvIngredients.setHasFixedSize(true);
 
-        mBinding.rvSteps.setLayoutManager(new LinearLayoutManager(getContext()));
-        mBinding.rvSteps.setHasFixedSize(true);
+        binding.rvSteps.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvSteps.setHasFixedSize(true);
 
         RecipeActivity recipeActivity = (RecipeActivity) getActivity();
         if (recipeActivity != null) {
             IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(recipeActivity.getRecipe().getIngredients());
             StepsAdapter stepsAdapter = new StepsAdapter(recipeActivity.getRecipe().getSteps(), this);
 
-            mBinding.rvIngredients.setAdapter(ingredientsAdapter);
-            mBinding.rvSteps.setAdapter(stepsAdapter);
+            binding.rvIngredients.setAdapter(ingredientsAdapter);
+            binding.rvSteps.setAdapter(stepsAdapter);
         }
 
-        return mBinding.getRoot();
+        return binding.getRoot();
     }
 
     @Override
