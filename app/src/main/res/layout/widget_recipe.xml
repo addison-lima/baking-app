@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <TextView
@@ -11,11 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="8dp"
-        android:background="#09C"
-        android:text="MY WIDGET!!!"
-        android:textColor="#ffffff"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold|italic"
-        tools:text="RECIPE TITLE" />
+        tools:text="@string/widget_recipe_name" />
 
 </LinearLayout>

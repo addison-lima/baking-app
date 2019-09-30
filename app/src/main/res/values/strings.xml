@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">BakingApp</string>
+    <string name="content_description_recipe_image">Recipe image</string>
+    <string name="ingredient_dash" translatable="false">-</string>
     <string name="menu_refresh">Refresh</string>
-    <string name="menu_update_widget">Update Widget</string>
-    <string name="recipe_image">Recipe image</string>
-    <string name="dash" translatable="false">-</string>
+    <string name="menu_add_to_widget">Add to widget</string>
+    <string name="step_id" translatable="false">1</string>
+    <string name="step_short_description" translatable="false">Short description</string>
+    <string name="widget_recipe_name" translatable="false">Recipe name</string>
 </resources>

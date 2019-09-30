@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_widget"
-        android:title="@string/menu_update_widget"
+        android:title="@string/menu_add_to_widget"
         app:showAsAction="ifRoom" />
 </menu>
