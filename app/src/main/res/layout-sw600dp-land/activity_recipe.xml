@@ -3,8 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".RecipeActivity">
+
+    <fragment
+        android:id="@+id/frg_recipe"
+        android:name="com.addison.bakingapp.fragments.RecipeFragment"
+        android:layout_width="400dp"
+        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary" />
 
     <FrameLayout
         android:id="@+id/fragment_more_detail"

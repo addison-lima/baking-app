@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.addison.bakingapp.fragments.IRecipeInfo;
+import com.addison.bakingapp.fragments.StepFragment;
 import com.addison.bakingapp.models.Recipe;
 import com.addison.bakingapp.models.Step;
 
@@ -47,30 +49,13 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
 
     public void onStepSelected(Step step) {
         mStep = step;
-//        if (!step.getThumbnailURL().isEmpty()) {
-//            String mimeType = AppUtils.getMimeType(this, Uri.parse(step.getThumbnailURL()));
-//            if (mimeType.startsWith(AppUtils.MIME_VIDEO)) {
-//                step.swapVideoWithThumb();
-//            }
-//        }
-
-//        if (!step.getVideoURL().isEmpty()) {
-//            String mimeType = AppUtils.getMimeType(this, Uri.parse(step.getVideoURL()));
-//            if (mimeType.startsWith(AppUtils.MIME_IMAGE)) {
-//                step.swapVideoWithThumb();
-//            }
-//        }
-
         if (mIsTablet) {
-//            RecipeInfoDetailFragment detailFragment = new RecipeInfoDetailFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putParcelable("step", step);
-//            detailFragment.setArguments(bundle);
-//
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction()
-//                    .replace(R.id.fragment_container_detail, detailFragment)
-//                    .commit();
+            StepFragment stepFragment = new StepFragment();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_more_detail, stepFragment)
+                    .commit();
         } else {
             Intent intent = new Intent(this, StepActivity.class);
             intent.putExtra("step", mStep);
