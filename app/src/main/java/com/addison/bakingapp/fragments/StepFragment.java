@@ -19,8 +19,6 @@ import com.addison.bakingapp.databinding.FragmentStepBinding;
 import com.addison.bakingapp.models.Step;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
@@ -31,16 +29,28 @@ import com.squareup.picasso.Picasso;
 
 public class StepFragment extends Fragment {
 
+    private static final long DEFAULT_POSITION = -1;
+    private static final String APPLICATION_NAME = "com.addison.bakingapp";
+    private static final String LAST_POSITION_KEY = "last_position";
+    private static final String MIME_IMAGE = "image/";
+    private static final String MIME_VIDEO = "video/";
+
     private FragmentStepBinding mBinding;
     private SimpleExoPlayer mPlayer;
 
     private Step mStep;
+
+    private long mLastPosition = DEFAULT_POSITION;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_step, container, false);
+
+        if (savedInstanceState != null) {
+            mLastPosition = savedInstanceState.getLong(LAST_POSITION_KEY, DEFAULT_POSITION);
+        }
 
         IRecipeInfo recipeInfo = (IRecipeInfo) getActivity();
         if (recipeInfo != null) {
@@ -60,20 +70,35 @@ public class StepFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        mLastPosition = (mPlayer != null) ? mPlayer.getCurrentPosition() : DEFAULT_POSITION;
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
+
         if (mPlayer != null) {
             mPlayer.release();
             mPlayer = null;
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putLong(LAST_POSITION_KEY, mLastPosition);
+    }
+
     private void updateMedia() {
-        String videoUrl = getMediaUrl("video/");
+        String videoUrl = getMediaUrl(MIME_VIDEO);
         if (!videoUrl.isEmpty()) {
             setPlayer(videoUrl);
         } else {
-            String thumbnailUrl = getMediaUrl("image/");
+            String thumbnailUrl = getMediaUrl(MIME_IMAGE);
             if (!thumbnailUrl.isEmpty()) {
                 setImage(thumbnailUrl);
             }
@@ -130,11 +155,14 @@ public class StepFragment extends Fragment {
 
             if (getContext() != null) {
                 DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getContext(),
-                        Util.getUserAgent(getContext(), "com.addison.bakingapp"));
+                        Util.getUserAgent(getContext(), APPLICATION_NAME));
                 MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
                         .createMediaSource(Uri.parse(videoUrl));
 
                 mPlayer.prepare(videoSource);
+                if (mLastPosition > 0) {
+                    mPlayer.seekTo(mLastPosition);
+                }
                 mPlayer.setPlayWhenReady(true);
             }
         }
