@@ -71,7 +71,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsAdapter
         }
 
         void setStepId(int stepId) {
-            mBinding.tvStepId.setText(String.valueOf(++stepId));
+            mBinding.tvStepId.setVisibility((stepId > 0) ? View.VISIBLE : View.INVISIBLE);
+            mBinding.tvStepId.setText(String.valueOf(stepId));
         }
 
         void setStepName(String stepName) {

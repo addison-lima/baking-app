@@ -23,6 +23,18 @@ public class StepFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_step, container, false);
+
+        IRecipeInfo recipeInfo = (IRecipeInfo) getActivity();
+        if (recipeInfo != null) {
+            mBinding.tvStepShortDescription.setText(recipeInfo.getStep().getShortDescription());
+            mBinding.tvStepDescription.setText(recipeInfo.getStep().getDescription());
+        }
+
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

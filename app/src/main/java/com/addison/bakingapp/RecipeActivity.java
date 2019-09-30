@@ -6,12 +6,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.addison.bakingapp.fragments.IRecipeInfo;
 import com.addison.bakingapp.models.Recipe;
 import com.addison.bakingapp.models.Step;
 
-public class RecipeActivity extends AppCompatActivity {
+public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
 
     private Recipe mRecipe = null;
+    private Step mStep = null;
     private boolean mIsTablet = false;
 
     @Override
@@ -37,7 +39,13 @@ public class RecipeActivity extends AppCompatActivity {
         return mRecipe;
     }
 
+    @Override
+    public Step getStep() {
+        return mStep;
+    }
+
     public void onStepSelected(Step step) {
+        mStep = step;
 //        if (!step.getThumbnailURL().isEmpty()) {
 //            String mimeType = AppUtils.getMimeType(this, Uri.parse(step.getThumbnailURL()));
 //            if (mimeType.startsWith(AppUtils.MIME_VIDEO)) {
@@ -64,8 +72,8 @@ public class RecipeActivity extends AppCompatActivity {
 //                    .commit();
         } else {
             Intent intent = new Intent(this, StepActivity.class);
-//            intent.putExtra(AppUtils.EXTRAS_STEP, step);
-//            intent.putExtra(AppUtils.EXTRAS_RECIPE_NAME, recipe.getName());
+            intent.putExtra("step", mStep);
+            intent.putExtra("recipe", mRecipe);
             startActivity(intent);
         }
     }

@@ -31,10 +31,10 @@ public class RecipeFragment extends Fragment implements StepsAdapter.StepsAdapte
         binding.rvSteps.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvSteps.setHasFixedSize(true);
 
-        RecipeActivity recipeActivity = (RecipeActivity) getActivity();
-        if (recipeActivity != null) {
-            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(recipeActivity.getRecipe().getIngredients());
-            StepsAdapter stepsAdapter = new StepsAdapter(recipeActivity.getRecipe().getSteps(), this);
+        IRecipeInfo recipeInfo = (IRecipeInfo) getActivity();
+        if (recipeInfo != null) {
+            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(recipeInfo.getRecipe().getIngredients());
+            StepsAdapter stepsAdapter = new StepsAdapter(recipeInfo.getRecipe().getSteps(), this);
 
             binding.rvIngredients.setAdapter(ingredientsAdapter);
             binding.rvSteps.setAdapter(stepsAdapter);

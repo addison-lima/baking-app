@@ -32,8 +32,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 tools:text="full description!!!!" />
-
-            <!-- if video for step available will be shown here -->
+<!--
             <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,8 +50,7 @@
                     android:visibility="invisible"
                     tools:visibility="visible" />
             </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
-
-            <!-- if Thumbnail exists and video does NOT exist, thumbnail will be shown here -->
+-->
             <ImageView
                 android:id="@+id/thumbnailView"
                 android:layout_width="match_parent"
