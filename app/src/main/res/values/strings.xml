@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">BakingApp</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="menu_update_widget">Update Widget</string>
     <string name="recipe_image">Recipe image</string>
     <string name="dash" translatable="false">-</string>
 </resources>
