@@ -8,20 +8,19 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_ingredient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="@string/dash" />
+
+        <TextView
+            android:id="@+id/tv_ingredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             tools:text="ingredient name" />
-
-        <TextView
-            android:id="@+id/tv_ingredient_dose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            tools:text="99" />
 
     </LinearLayout>
 </layout>

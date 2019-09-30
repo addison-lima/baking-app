@@ -36,8 +36,7 @@ public class IngredientsAdapter extends
     @Override
     public void onBindViewHolder(@NonNull IngredientsAdapterViewHolder holder, int position) {
         Ingredient ingredient = mIngredientsData.get(position);
-        holder.setIngredientName(ingredient.getIngredient());
-        holder.setIngredientDose(ingredient.getDose());
+        holder.setIngredient(ingredient.getIngredient(), ingredient.getDose());
     }
 
     @Override
@@ -58,12 +57,9 @@ public class IngredientsAdapter extends
             mBinding = DataBindingUtil.bind(itemView);
         }
 
-        void setIngredientName(String ingredientName) {
-            mBinding.tvIngredientName.setText(ingredientName);
-        }
-
-        void setIngredientDose(String ingredientDose) {
-            mBinding.tvIngredientDose.setText(ingredientDose);
+        void setIngredient(String name, String dose) {
+            String ingredient = String.format("%s  |  %s", name, dose);
+            mBinding.tvIngredient.setText(ingredient);
         }
     }
 }
