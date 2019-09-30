@@ -21,6 +21,8 @@ import com.addison.bakingapp.widget.BakingWidgetProvider;
 
 public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
 
+    public static final String RECIPE_EXTRA_KEY = "recipe";
+
     private Recipe mRecipe = null;
     private Step mStep = null;
     private boolean mIsTablet = false;
@@ -30,18 +32,16 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
-        if ((extras != null) && (extras.containsKey("recipe"))) {
-            mRecipe = getIntent().getParcelableExtra("recipe");
+        if ((extras != null) && (extras.containsKey(RECIPE_EXTRA_KEY))) {
+            mRecipe = getIntent().getParcelableExtra(RECIPE_EXTRA_KEY);
         }
-        if (mRecipe == null) {
-            Toast.makeText(this, "Something bad happened.", Toast.LENGTH_LONG).show();
+        if (mRecipe != null) {
+            setTitle(mRecipe.getName());
+            setContentView(R.layout.activity_recipe);
+            mIsTablet = (findViewById(R.id.fragment_more_detail) != null);
+        } else {
             finish();
         }
-
-        setTitle(mRecipe.getName());
-        setContentView(R.layout.activity_recipe);
-
-        mIsTablet = (findViewById(R.id.fragment_more_detail) != null);
     }
 
     @Override
@@ -82,8 +82,8 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
                     .commit();
         } else {
             Intent intent = new Intent(this, StepActivity.class);
-            intent.putExtra("step", mStep);
-            intent.putExtra("recipe", mRecipe);
+            intent.putExtra(StepActivity.STEP_EXTRA_KEY, mStep);
+            intent.putExtra(StepActivity.RECIPE_EXTRA_KEY, mRecipe);
             startActivity(intent);
         }
     }

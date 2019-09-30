@@ -1,5 +1,6 @@
 package com.addison.bakingapp.models;
 
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -42,10 +43,11 @@ public class Ingredient implements Parcelable {
     }
 
     public String getDose() {
-        return fmt(quantity) + " " + measure;
+        return String.format("%s %s", toString(quantity), measure);
     }
 
-    private String fmt(double d) {
+    @SuppressLint("DefaultLocale")
+    private String toString(double d) {
         if (d == (long) d) {
             return String.format("%d", (long) d);
         } else {
