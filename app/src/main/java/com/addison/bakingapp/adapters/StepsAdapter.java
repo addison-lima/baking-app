@@ -60,6 +60,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsAdapter
             super(itemView);
 
             mBinding = DataBindingUtil.bind(itemView);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override

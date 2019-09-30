@@ -1,4 +1,6 @@
 package com.addison.bakingapp;
 
-public class StepActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class StepActivity extends AppCompatActivity {
 }

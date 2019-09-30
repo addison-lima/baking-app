@@ -25,6 +25,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.addison.bakingapp.RecipeActivity" />
         </activity>
+
+        <activity android:name=".StepActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.addison.bakingapp.StepActivity" />
+        </activity>
     </application>
 
 </manifest>

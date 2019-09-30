@@ -1,5 +1,6 @@
 package com.addison.bakingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -62,10 +63,10 @@ public class RecipeActivity extends AppCompatActivity {
 //                    .replace(R.id.fragment_container_detail, detailFragment)
 //                    .commit();
         } else {
-//            Intent intent = new Intent(this, RecipeInfoDetailActivity.class);
+            Intent intent = new Intent(this, StepActivity.class);
 //            intent.putExtra(AppUtils.EXTRAS_STEP, step);
 //            intent.putExtra(AppUtils.EXTRAS_RECIPE_NAME, recipe.getName());
-//            startActivity(intent);
+            startActivity(intent);
         }
     }
 }
