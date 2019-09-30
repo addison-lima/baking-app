@@ -1,6 +1,5 @@
 package com.addison.bakingapp.models;
 
-import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -47,7 +46,7 @@ public class Ingredient implements Parcelable {
     }
 
     private String fmt(double d) {
-        if(d == (long) d) {
+        if (d == (long) d) {
             return String.format("%d", (long) d);
         } else {
             return String.format("%s", d);

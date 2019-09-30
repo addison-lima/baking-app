@@ -16,10 +16,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.addison.bakingapp.adapters.RecipesAdapter;
+import com.addison.bakingapp.databinding.ActivityMainBinding;
 import com.addison.bakingapp.models.Recipe;
 import com.addison.bakingapp.repository.RecipesRepository;
 import com.addison.bakingapp.viewmodels.RecipesViewModel;
-import com.addison.bakingapp.databinding.ActivityMainBinding;
 
 import java.util.List;
 

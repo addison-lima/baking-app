@@ -14,7 +14,8 @@ import com.addison.bakingapp.models.Ingredient;
 
 import java.util.List;
 
-public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.IngredientsAdapterViewHolder> {
+public class IngredientsAdapter extends
+        RecyclerView.Adapter<IngredientsAdapter.IngredientsAdapterViewHolder> {
 
     private List<Ingredient> mIngredientsData;
 
@@ -24,9 +25,11 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     @NonNull
     @Override
-    public IngredientsAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IngredientsAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+            int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemIngredientBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_ingredient, parent, false);
+        ItemIngredientBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_ingredient,
+                parent, false);
         return new IngredientsAdapter.IngredientsAdapterViewHolder(binding.getRoot());
     }
 

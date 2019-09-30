@@ -35,6 +35,7 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
         mIsTablet = (findViewById(R.id.fragment_more_detail) != null);
     }
 
+    @Override
     public Recipe getRecipe() {
         return mRecipe;
     }

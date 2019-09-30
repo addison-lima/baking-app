@@ -11,8 +11,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.addison.bakingapp.RecipeActivity;
 import com.addison.bakingapp.R;
+import com.addison.bakingapp.RecipeActivity;
 import com.addison.bakingapp.adapters.IngredientsAdapter;
 import com.addison.bakingapp.adapters.StepsAdapter;
 import com.addison.bakingapp.databinding.FragmentRecipeBinding;
@@ -22,8 +22,10 @@ public class RecipeFragment extends Fragment implements StepsAdapter.StepsAdapte
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentRecipeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recipe, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
+        FragmentRecipeBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_recipe,
+                container, false);
 
         binding.rvIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvIngredients.setHasFixedSize(true);
@@ -33,7 +35,8 @@ public class RecipeFragment extends Fragment implements StepsAdapter.StepsAdapte
 
         IRecipeInfo recipeInfo = (IRecipeInfo) getActivity();
         if (recipeInfo != null) {
-            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(recipeInfo.getRecipe().getIngredients());
+            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(
+                    recipeInfo.getRecipe().getIngredients());
             StepsAdapter stepsAdapter = new StepsAdapter(recipeInfo.getRecipe().getSteps(), this);
 
             binding.rvIngredients.setAdapter(ingredientsAdapter);

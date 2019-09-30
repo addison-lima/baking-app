@@ -33,7 +33,7 @@ public class StepActivity extends AppCompatActivity implements IRecipeInfo {
         if (mStep.getId() > 0) {
             setTitle(String.valueOf(mStep.getId()));
         } else {
-            setTitle(mStep.getShortDescription());
+            setTitle("");
         }
 
         setContentView(R.layout.activity_step);

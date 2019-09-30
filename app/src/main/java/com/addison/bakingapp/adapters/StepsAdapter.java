@@ -29,7 +29,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsAdapter
     @Override
     public StepsAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        ItemStepBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_step, parent, false);
+        ItemStepBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_step, parent,
+                false);
         return new StepsAdapter.StepsAdapterViewHolder(binding.getRoot());
     }
 
@@ -52,7 +53,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsAdapter
         void onClick(Step step);
     }
 
-    public class StepsAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class StepsAdapterViewHolder extends RecyclerView.ViewHolder implements
+            View.OnClickListener {
 
         private ItemStepBinding mBinding;
 
