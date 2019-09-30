@@ -19,7 +19,14 @@ import com.addison.bakingapp.databinding.FragmentStepBinding;
 import com.addison.bakingapp.models.Step;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
 public class StepFragment extends Fragment {
@@ -50,6 +57,15 @@ public class StepFragment extends Fragment {
         super.onResume();
 
         updateMedia();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
     }
 
     private void updateMedia() {
@@ -111,6 +127,16 @@ public class StepFragment extends Fragment {
             mPlayer = ExoPlayerFactory.newSimpleInstance(getContext());
             mBinding.pvPlayer.setPlayer(mPlayer);
             mBinding.pvPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH);
+
+            if (getContext() != null) {
+                DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(getContext(),
+                        Util.getUserAgent(getContext(), "com.addison.bakingapp"));
+                MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
+                        .createMediaSource(Uri.parse(videoUrl));
+
+                mPlayer.prepare(videoSource);
+                mPlayer.setPlayWhenReady(true);
+            }
         }
     }
 
