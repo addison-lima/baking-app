@@ -3,6 +3,7 @@ package com.addison.bakingapp;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +22,7 @@ import com.addison.bakingapp.widget.BakingWidgetProvider;
 public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
 
     public static final String RECIPE_EXTRA_KEY = "recipe";
+    public static final String RECIPE_NAME_PREFERENCE_KEY = "recipe_name";
 
     private Recipe mRecipe = null;
     private Step mStep = null;
@@ -88,6 +90,11 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
     }
 
     private void updateWidget() {
+        SharedPreferences sharedPreferences = getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE);
+        sharedPreferences.edit()
+                .putString(RECIPE_NAME_PREFERENCE_KEY, mRecipe.getName())
+                .apply();
+
         ComponentName provider = new ComponentName(this, BakingWidgetProvider.class);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
         int[] ids = appWidgetManager.getAppWidgetIds(provider);
