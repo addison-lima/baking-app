@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.addison.bakingapp.R;
+import com.addison.bakingapp.databinding.ItemRecipeBinding;
 import com.addison.bakingapp.models.Recipe;
 import com.squareup.picasso.Picasso;
 
@@ -70,14 +70,12 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesA
     public class RecipesAdapterViewHolder extends RecyclerView.ViewHolder implements
             View.OnClickListener {
 
-        private ImageView mIvRecipeImage;
-        private TextView mTvRecipeName;
+        private ItemRecipeBinding mBinding;
 
         public RecipesAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mIvRecipeImage = itemView.findViewById(R.id.iv_recipe);
-            mTvRecipeName = itemView.findViewById(R.id.tv_recipe);
+            mBinding = DataBindingUtil.bind(itemView);
 
             itemView.setOnClickListener(this);
         }
@@ -90,17 +88,17 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipesA
 
         void setRecipeImage(String imagePath) {
             if (imagePath.trim().equals("")) {
-                mIvRecipeImage.setImageResource(R.color.colorPrimary);
+                mBinding.ivRecipe.setImageResource(R.color.colorPrimary);
             } else {
                 Picasso.with(mContext)
                         .load(imagePath)
                         .error(R.color.colorPrimary)
-                        .into(mIvRecipeImage);
+                        .into(mBinding.ivRecipe);
             }
         }
 
         void setRecipeName(String recipeName) {
-            mTvRecipeName.setText(recipeName);
+            mBinding.tvRecipe.setText(recipeName);
         }
     }
 }

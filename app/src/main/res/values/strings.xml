@@ -4,6 +4,7 @@
     <string name="content_description_step_thumbnail">Thumbnail</string>
     <string name="item_ingredient_dash" translatable="false">-</string>
     <string name="item_ingredient_name" translatable="false">ingredient name</string>
+    <string name="item_recipe_name" translatable="false">Recipe name</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_add_to_widget">Add to widget</string>
     <string name="recipe_ingredients">Ingredients</string>
