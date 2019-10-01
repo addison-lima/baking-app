@@ -30,12 +30,14 @@ public class BakingWidgetProvider extends AppWidgetProvider {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(BuildConfig.APPLICATION_ID, Context.MODE_PRIVATE);
         String recipeName = sharedPreferences.getString(RecipeActivity.RECIPE_NAME_PREFERENCE_KEY, "");
+        String recipeIngredients = sharedPreferences.getString(RecipeActivity.RECIPE_INGREDIENTS_PREFERENCE_KEY, "");
 
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_recipe);
         remoteViews.setOnClickPendingIntent(R.id.tv_widget_recipe_name, pendingIntent);
         if (!recipeName.isEmpty()) {
             remoteViews.setTextViewText(R.id.tv_widget_recipe_name, recipeName);
         }
+        remoteViews.setTextViewText(R.id.tv_widget_recipe_ingredients, recipeIngredients);
 
         appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
     }

@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.addison.bakingapp.fragments.IRecipeInfo;
 import com.addison.bakingapp.fragments.StepFragment;
+import com.addison.bakingapp.models.Ingredient;
 import com.addison.bakingapp.models.Recipe;
 import com.addison.bakingapp.models.Step;
 import com.addison.bakingapp.widget.BakingWidgetProvider;
@@ -23,6 +24,7 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
 
     public static final String RECIPE_EXTRA_KEY = "recipe";
     public static final String RECIPE_NAME_PREFERENCE_KEY = "recipe_name";
+    public static final String RECIPE_INGREDIENTS_PREFERENCE_KEY = "recipe_ingredients";
 
     private Recipe mRecipe = null;
     private Step mStep = null;
@@ -93,6 +95,7 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
         SharedPreferences sharedPreferences = getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE);
         sharedPreferences.edit()
                 .putString(RECIPE_NAME_PREFERENCE_KEY, mRecipe.getName())
+                .putString(RECIPE_INGREDIENTS_PREFERENCE_KEY, getIngredients())
                 .apply();
 
         ComponentName provider = new ComponentName(this, BakingWidgetProvider.class);
@@ -100,5 +103,18 @@ public class RecipeActivity extends AppCompatActivity implements IRecipeInfo {
         int[] ids = appWidgetManager.getAppWidgetIds(provider);
         BakingWidgetProvider bakingWidgetProvider = new BakingWidgetProvider();
         bakingWidgetProvider.onUpdate(this, appWidgetManager, ids);
+    }
+
+    private String getIngredients() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Ingredient ingredient : mRecipe.getIngredients()) {
+            stringBuilder.append(String.format("- %s  |  %s",
+                    ingredient.getIngredient(),
+                    ingredient.getDose()));
+            stringBuilder.append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 }
