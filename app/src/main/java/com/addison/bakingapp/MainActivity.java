@@ -77,7 +77,10 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onChanged(RecipesRepository.RequestState requestState) {
                 if (requestState != null) {
-                    mBinding.tvRequestState.setText(requestState.toString());
+                    mBinding.tvRequestState.setText(
+                            (requestState.equals(RecipesRepository.RequestState.FAILURE))
+                                    ? R.string.request_failure
+                                    : R.string.request_loading);
                     if (requestState.equals(RecipesRepository.RequestState.SUCCESS)) {
                         mBinding.tvRequestState.setVisibility(View.INVISIBLE);
                         mBinding.rvRecipes.setVisibility(View.VISIBLE);

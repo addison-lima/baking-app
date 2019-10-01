@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">BakingApp</string>
     <string name="content_description_recipe_image">Recipe image</string>
-    <string name="ingredient_dash" translatable="false">-</string>
+    <string name="content_description_step_thumbnail">Thumbnail</string>
+    <string name="item_ingredient_dash" translatable="false">-</string>
+    <string name="item_ingredient_name" translatable="false">ingredient name</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_add_to_widget">Add to widget</string>
+    <string name="recipe_ingredients">Ingredients</string>
+    <string name="recipe_steps">Steps</string>
+    <string name="request_loading">Loading</string>
+    <string name="request_failure">No internet connection, please try again.</string>
     <string name="step_id" translatable="false">1</string>
     <string name="step_short_description" translatable="false">Short description</string>
+    <string name="step_full_description" translatable="false">1. Full description of the step.</string>
     <string name="widget_recipe_name" translatable="false">Recipe name</string>
 </resources>

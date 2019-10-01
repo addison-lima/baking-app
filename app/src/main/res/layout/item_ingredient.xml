@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="@string/ingredient_dash" />
+            android:text="@string/item_ingredient_dash" />
 
         <TextView
             android:id="@+id/tv_ingredient"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            tools:text="ingredient name" />
+            tools:text="@string/item_ingredient_name" />
 
     </LinearLayout>
 </layout>

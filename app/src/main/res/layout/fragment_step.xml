@@ -19,9 +19,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                tools:text="Short description" />
+                tools:text="@string/step_short_description" />
 
             <TextView
                 android:id="@+id/tv_step_description"
@@ -30,7 +30,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                tools:text="1. Full description of the step." />
+                tools:text="@string/step_full_description" />
 
             <ImageView
                 android:id="@+id/iv_thumbnail"
@@ -42,7 +42,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:adjustViewBounds="true"
-                android:contentDescription="thumbnail"
+                android:contentDescription="@string/content_description_step_thumbnail"
                 android:visibility="gone" />
 
             <com.google.android.exoplayer2.ui.PlayerView
